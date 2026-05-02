@@ -288,7 +288,7 @@
 .tile-multi-badge {
   position: absolute;
   top: 8px;
-  right: 8px;
+  left: 8px;
   background: rgba(0, 0, 0, 0.55);
   color: white;
   border-radius: 12px;
@@ -296,6 +296,20 @@
   font-size: 11px;
   font-weight: 700;
   backdrop-filter: blur(4px);
+}
+
+.tile-date-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
 }
 
 .tile-overlay {

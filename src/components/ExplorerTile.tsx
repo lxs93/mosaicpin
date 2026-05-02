@@ -1,6 +1,18 @@
 import type { ExplorerTile as TileData, SafetySettings } from '../types'
 import { SafetyOverlay } from './SafetyOverlay'
 
+function formatRelativeDate(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime()
+  const mins = Math.floor(diff / 60_000)
+  if (mins < 1) return 'just now'
+  if (mins < 60) return `${mins}m ago`
+  const hours = Math.floor(mins / 60)
+  if (hours < 24) return `${hours}h ago`
+  const days = Math.floor(hours / 24)
+  if (days < 7) return `${days}d ago`
+  return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+}
+
 type Props = {
   tile: TileData
   safety: SafetySettings
@@ -36,6 +48,9 @@ export function ExplorerTile({ tile, safety, onCreatorClick, onImageClick }: Pro
               {tile.images.length}
             </span>
           )}
+          <span className="tile-date-badge" aria-label={`Posted ${tile.createdAt}`}>
+            {formatRelativeDate(tile.createdAt)}
+          </span>
         </div>
         <div className="tile-overlay">
           <button
